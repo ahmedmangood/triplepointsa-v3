@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import BrandMetadataSync from '@/components/layout/BrandMetadataSync'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 
 
 export const metadata: Metadata = {
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Header />
             <main>{children}</main>
             <Footer />
+            <ScrollToTopButton />
             <WhatsAppButton />
           </ThemeProvider>
         </I18nProvider>

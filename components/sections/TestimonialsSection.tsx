@@ -33,12 +33,12 @@ export default function TestimonialsSection() {
           className="relative"
         >
           {/* Quote icon */}
-          <div className="absolute -top-4 start-8 text-gold-500/20">
+          <div className="absolute -top-16 start-4 text-gold-500/20">
             <Quote size={80} fill="currentColor" />
           </div>
 
           {/* Testimonial card */}
-          <div className="relative glass rounded-3xl p-10 border border-gold-500/15 min-h-[220px] flex flex-col justify-center">
+          <div className="relative rounded-3xl dark:bg-teal-800 bg-teal-700 p-10 border border-gold-500/15 min-h-[220px] flex flex-col justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -73,7 +73,7 @@ export default function TestimonialsSection() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`h-2 rounded-full transition-all ${i === active ? 'w-8 bg-gold-500' : 'w-2 bg-white/20 hover:bg-white/40'}`}
+                  className={`h-2 rounded-full transition-all ${i === active ? 'w-8 bg-gold-500' : 'w-2 dark:bg-white/20 bg-gold-400 hover:bg-white/40'}`}
                   aria-label={`Testimonial ${i + 1}`}
                 />
               ))}
@@ -83,17 +83,17 @@ export default function TestimonialsSection() {
             <div className="flex gap-2">
               <button
                 onClick={isRTL ? next : prev}
-                className="w-10 h-10 rounded-xl border border-white/10 hover:border-gold-500/40 text-white/40 hover:text-gold-500 transition-all flex items-center justify-center"
+                className="w-10 h-10 rounded-xl border border-gold-400 hover:border-gold-500/40 text-white/40 hover:text-gold-500 transition-all flex items-center justify-center"
                 aria-label="Previous"
               >
-                <ChevronRight size={18} />
+                <ChevronRight size={18} className='text-gold-400' />
               </button>
               <button
                 onClick={isRTL ? prev : next}
-                className="w-10 h-10 rounded-xl border border-white/10 hover:border-gold-500/40 text-white/40 hover:text-gold-500 transition-all flex items-center justify-center"
+                className="w-10 h-10 rounded-xl border border-gold-400 hover:border-gold-500/40 text-white/40 hover:text-gold-500 transition-all flex items-center justify-center"
                 aria-label="Next"
               >
-                <ChevronLeft size={18} />
+                <ChevronLeft size={18} className='text-gold-400' />
               </button>
             </div>
           </div>
