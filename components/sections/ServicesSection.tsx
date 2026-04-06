@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Monitor, Users, Shield, Home, ArrowLeft, ArrowRight } from 'lucide-react'
+import { Monitor, Users, Shield, Home, Tv, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useI18n } from '@/lib/i18n/context'
 
 const icons = {
@@ -11,6 +11,7 @@ const icons = {
   queue: Users,
   security: Shield,
   smart: Home,
+  videoWall: Tv,
 }
 
 const serviceLinks = {
@@ -18,6 +19,7 @@ const serviceLinks = {
   queue: '/services/queue-management',
   security: '/services/security-surveillance',
   smart: '/services/smart-home',
+  videoWall: '/services/video-wall',
 }
 
 const gradients = [
@@ -25,20 +27,34 @@ const gradients = [
   'from-teal-800/80 to-charcoal-800/80',
   'from-charcoal-700/80 to-teal-800/80',
   'from-teal-600/80 to-charcoal-900/80',
+  'from-charcoal-800/80 to-teal-700/80',
 ]
 
 export default function ServicesSection() {
   const { t, isRTL } = useI18n()
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
+  const videoWallService = {
+    key: 'videoWall',
+    title: isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions',
+    desc: isRTL
+      ? 'حلول Video Wall احترافية لعرض المحتوى والبيانات في غرف التحكم والاستقبال والمعارض بجودة عالية وإدارة مركزية.'
+      : 'Professional video wall systems for control rooms, lobbies, and experience centers with centralized content management.',
+    Icon: Tv,
+    href: '/services/video-wall',
+    gradient: gradients[4],
+  }
 
-  const services = Object.entries(t.services.items).map(([key, val]) => ({
-    key,
-    ...val,
-    Icon: icons[key as keyof typeof icons],
-    href: serviceLinks[key as keyof typeof serviceLinks],
-    gradient: gradients[Object.keys(t.services.items).indexOf(key)],
-  }))
+  const services = [
+    ...Object.entries(t.services.items).map(([key, val]) => ({
+      key,
+      ...val,
+      Icon: icons[key as keyof typeof icons],
+      href: serviceLinks[key as keyof typeof serviceLinks],
+      gradient: gradients[Object.keys(t.services.items).indexOf(key)],
+    })),
+    videoWallService,
+  ]
 
   return (
     <section ref={ref} className="py-24 bg-white dark:bg-charcoal-900">
@@ -59,7 +75,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {services.map((service, i) => {
             const Icon = service.Icon
             return (

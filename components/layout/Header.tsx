@@ -27,6 +27,7 @@ export default function Header() {
     { href: '/services/queue-management', label: isRTL ? 'أنظمة إدارة الطوابير' : 'Queue Management' },
     { href: '/services/security-surveillance', label: isRTL ? 'الأمن والمراقبة' : 'Security & Surveillance' },
     { href: '/services/smart-home', label: isRTL ? 'المنازل الذكية' : 'Smart Home Systems' },
+    { href: '/services/video-wall', label: isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions' },
   ]
 
   return (

@@ -35,6 +35,10 @@ export default function ContactClient() {
     { Icon: Mail,    label: cp.info.email },
     { Icon: Clock,   label: cp.info.hours },
   ]
+  const serviceOptions = [
+    ...cp.form.services,
+    isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions',
+  ]
 
   return (
     <>
@@ -113,7 +117,7 @@ export default function ContactClient() {
                       <label className="block text-xs font-semibold text-charcoal-600 dark:text-white/60 mb-1.5">{cp.form.service}</label>
                       <select name="service" value={form.service} onChange={handleChange} className={inputClass}>
                         <option value="">{isRTL ? '— اختر الخدمة —' : '— Select a Service —'}</option>
-                        {cp.form.services.map(s => <option key={s} value={s}>{s}</option>)}
+                        {serviceOptions.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </div>
 

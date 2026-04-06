@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Monitor, Users, Shield, Home, ArrowLeft, ArrowRight } from 'lucide-react'
+import { Monitor, Users, Shield, Home, Tv, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useI18n } from '@/lib/i18n/context'
 import FinalCtaSection from '@/components/sections/FinalCtaSection'
 
@@ -12,7 +12,30 @@ const serviceCards = [
   { key: 'queue', Icon: Users, href: '/services/queue-management', gradient: 'from-teal-800 to-charcoal-800' },
   { key: 'security', Icon: Shield, href: '/services/security-surveillance', gradient: 'from-charcoal-700 to-teal-900' },
   { key: 'smartHome', Icon: Home, href: '/services/smart-home', gradient: 'from-teal-600 to-charcoal-900' },
+  { key: 'videoWall', Icon: Tv, href: '/services/video-wall', gradient: 'from-charcoal-800 to-teal-800' },
 ]
+
+const getVideoWallData = (isRTL: boolean) => ({
+  title: isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions',
+  subtitle: isRTL ? 'منصات عرض احترافية للمراقبة والعروض التفاعلية' : 'Professional visual platforms for monitoring and immersive display',
+  desc: isRTL
+    ? 'نصمم وننفذ أنظمة Video Wall متكاملة لعرض البيانات والمحتوى المرئي في غرف التحكم والردهات ومراكز العمليات والمعارض.'
+    : 'We design and implement integrated video wall systems for control rooms, lobbies, operations centers, and exhibitions.',
+  benefits: isRTL
+    ? [
+        'شاشات متزامنة بإطارات نحيفة ودقة عرض عالية',
+        'معالجات Video Wall احترافية لتقسيم وإدارة المحتوى',
+        'تشغيل مستمر 24/7 لغرف المراقبة ومراكز العمليات',
+        'إدارة مركزية للمصادر والسيناريوهات من واجهة واحدة',
+      ]
+    : [
+        'Synchronized high-resolution panels with ultra-narrow bezels',
+        'Professional video wall processors for layout and source control',
+        '24/7 operation for monitoring centers and operations rooms',
+        'Centralized management for sources, presets, and display scenarios',
+      ],
+  industries: isRTL ? ['حكومة', 'أمن', 'شركات', 'معارض'] : ['Government', 'Security', 'Corporate', 'Exhibitions'],
+})
 
 export default function ServicesMainClient() {
   const { t, isRTL } = useI18n()
@@ -39,7 +62,9 @@ export default function ServicesMainClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {serviceCards.map(({ key, Icon, href, gradient }, i) => {
-              const data = sp[key as keyof typeof sp] as { title: string; subtitle: string; desc: string; benefits: string[]; industries: string[] }
+              const data = key === 'videoWall'
+                ? getVideoWallData(isRTL)
+                : sp[key as keyof typeof sp] as { title: string; subtitle: string; desc: string; benefits: string[]; industries: string[] }
               return (
                 <motion.div
                   key={key}

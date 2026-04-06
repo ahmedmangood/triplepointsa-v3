@@ -19,12 +19,36 @@ interface ServiceDetailData {
 interface ServiceDetailPageProps {
   Icon: LucideIcon
   gradient: string
-  dataKey: 'meetingRooms' | 'queue' | 'security' | 'smartHome'
+  dataKey: 'meetingRooms' | 'queue' | 'security' | 'smartHome' | 'videoWall'
 }
 
 export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDetailPageProps) {
   const { t, isRTL } = useI18n()
-  const data = t.servicesPage[dataKey] as ServiceDetailData
+  const videoWallData: ServiceDetailData = {
+    title: isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions',
+    subtitle: isRTL ? 'منصات عرض احترافية للمراقبة والعروض التفاعلية' : 'Professional visual platforms for monitoring and immersive display',
+    desc: isRTL
+      ? 'نصمم وننفذ أنظمة Video Wall متكاملة لعرض البيانات والمحتوى المرئي في غرف التحكم، الردهات، مراكز العمليات، والمعارض. نوفر لك شاشات عالية الاعتمادية مع معالجات عرض احترافية وإدارة محتوى مركزية تناسب بيئات العمل الحرجة.'
+      : 'We design and implement integrated video wall systems for control rooms, lobbies, operations centers, and exhibitions. Our solutions combine high-reliability display panels, professional wall processors, and centralized content control for mission-critical environments.',
+    benefits: isRTL
+      ? [
+          'شاشات متزامنة بإطارات نحيفة ودقة عرض عالية',
+          'معالجات Video Wall احترافية لتقسيم وإدارة المحتوى',
+          'تشغيل مستمر 24/7 لغرف المراقبة ومراكز العمليات',
+          'إدارة مركزية للمصادر والسيناريوهات من واجهة واحدة',
+        ]
+      : [
+          'Synchronized high-resolution panels with ultra-narrow bezels',
+          'Professional video wall processors for layout and source control',
+          '24/7 operation for monitoring centers and operations rooms',
+          'Centralized management for sources, presets, and display scenarios',
+        ],
+    useCases: isRTL
+      ? ['غرف التحكم والمراقبة', 'ردهات الشركات والجهات الحكومية', 'المعارض ومراكز الزوار', 'مراكز العمليات والطوارئ']
+      : ['Control and surveillance rooms', 'Corporate and government lobbies', 'Exhibitions and visitor centers', 'Operations and emergency centers'],
+    industries: isRTL ? ['حكومة', 'أمن', 'شركات', 'معارض'] : ['Government', 'Security', 'Corporate', 'Exhibitions'],
+  }
+  const data = dataKey === 'videoWall' ? videoWallData : t.servicesPage[dataKey] as ServiceDetailData
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
 

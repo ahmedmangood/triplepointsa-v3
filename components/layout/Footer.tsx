@@ -13,6 +13,7 @@ export default function Footer() {
     { href: '/services/queue-management', label: isRTL ? 'إدارة الطوابير' : 'Queue Management' },
     { href: '/services/security-surveillance', label: isRTL ? 'الأمن والمراقبة' : 'Security & Surveillance' },
     { href: '/services/smart-home', label: isRTL ? 'المنازل الذكية' : 'Smart Homes' },
+    { href: '/services/video-wall', label: isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions' },
   ]
 
   return (

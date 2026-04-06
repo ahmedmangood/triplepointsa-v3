@@ -18,7 +18,7 @@ export default function HeroSection() {
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
 
   return (
-    <section className="relative min-h-screen  grid-pattern flex items-center overflow-hidden pt-20">
+    <section className="relative min-h-screen  hero-image  flex items-center overflow-hidden pt-20">
       <div className="absolute inset-0 bg-[#0b4f8a]/45 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-br from-[#041a33]/85 via-[#0b5ea8]/55 to-[#06284a]/80 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(86,180,255,0.22),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(22,122,204,0.2),transparent_36%),radial-gradient(circle_at_50%_85%,rgba(8,45,86,0.4),transparent_42%)] pointer-events-none" />

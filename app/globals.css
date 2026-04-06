@@ -99,6 +99,13 @@ body {
 }
 
 /* Hero background */
+.hero-image {
+  background-image: url("/bg/bg-02.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .hero-bg {
   background: linear-gradient(135deg, #060f17 0%, #0d2a3a 35%, #1a4a5c 65%, #0f3345 100%);
   position: relative;
@@ -125,10 +132,12 @@ body {
 /* Grid pattern */
 .grid-pattern {
   background-image: 
-    linear-gradient(rgba(201, 168, 76, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 168, 76, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(201, 168, 76, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.2) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+
+
 
 /* Animated border */
 .border-gold-animated {
