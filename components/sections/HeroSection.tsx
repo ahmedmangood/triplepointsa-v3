@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, MessageCircle, Play } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Play } from 'lucide-react'
 import { useI18n } from '@/lib/i18n/context'
 import Image from 'next/image'
 
@@ -45,52 +45,28 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: isRTL ? 40 : -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
+          <div>
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="badge mb-6 w-fit"
-            >
+            <div className="badge mb-6 w-fit">
               <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse" />
               {t.hero.badge}
-            </motion.div>
+            </div>
 
             {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="display-xl dark:text-white mb-4"
-            >
+            <h1 className="display-xl dark:text-white mb-4">
               {t.hero.title}{' '}
               <span className="text-gradient-gold block sm:inline">
                 {t.hero.titleHighlight}
               </span>
-            </motion.h1>
+            </h1>
 
             {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="dark:text-white/60 text-lg leading-relaxed mb-10 max-w-xl"
-            >
+            <p className="dark:text-white/60 text-lg leading-relaxed mb-10 max-w-xl">
               {t.hero.subtitle}
-            </motion.p>
+            </p>
 
             {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4"
-            >
+            <div className="flex flex-wrap gap-4">
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-2 px-7 py-3.5 bg-gold-500 hover:bg-gold-400 text-teal-900 font-bold rounded-xl transition-all duration-200 shadow-lg shadow-gold-500/25 hover:shadow-gold-500/40 hover:-translate-y-0.5"
@@ -105,8 +81,8 @@ export default function HeroSection() {
                 <Play size={16} className="text-gold-500" />
                 {t.hero.cta2}
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Visual */}
           <motion.div
@@ -154,30 +130,22 @@ export default function HeroSection() {
         </div>
 
         {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.7 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-        >
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { value: '200+', label: t.hero.stats.projects },
             { value: '80+', label: t.hero.stats.clients },
             { value: '10+', label: t.hero.stats.years },
             { value: '24/7', label: t.hero.stats.support },
-          ].map((stat, i) => (
-            <motion.div
+          ].map((stat) => (
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + i * 0.1 }}
               className="glass rounded-2xl px-6 py-4 border border-gold-500/10 text-center"
             >
               <div className="text-3xl font-bold text-gold-500 counter-number">{stat.value}</div>
               <div className="text-white/50 text-sm mt-1">{stat.label}</div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
