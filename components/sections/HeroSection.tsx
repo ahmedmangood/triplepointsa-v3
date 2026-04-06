@@ -29,11 +29,6 @@ export default function HeroSection() {
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
-      <motion.div
-        className="absolute bottom-1/4 start-1/3 w-64 h-64 rounded-full bg-gold-500/8 blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.5, 0.2] }}
-        transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-      />
 
       {/* Geometric shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -48,12 +43,12 @@ export default function HeroSection() {
           <div>
             {/* Badge */}
             <div className="badge mb-6 w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
               {t.hero.badge}
             </div>
 
             {/* Headline */}
-            <h1 className="display-xl dark:text-white mb-4">
+            <h1 className="display-xl text-white mb-4">
               {t.hero.title}{' '}
               <span className="text-gradient-gold block sm:inline">
                 {t.hero.titleHighlight}
@@ -61,7 +56,7 @@ export default function HeroSection() {
             </h1>
 
             {/* Subtitle */}
-            <p className="dark:text-white/60 text-lg leading-relaxed mb-10 max-w-xl">
+            <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-xl">
               {t.hero.subtitle}
             </p>
 
@@ -76,7 +71,7 @@ export default function HeroSection() {
               </Link>
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 border border-black dark:border-white/20 hover:border-gold-500/50 dark:text-white/80 hover:text-white font-medium rounded-xl transition-all duration-200 hover:bg-white/5 backdrop-blur-sm"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 hover:border-gold-500/50 text-white/80 hover:text-white font-medium rounded-xl transition-all duration-200 hover:bg-white/5 backdrop-blur-sm"
               >
                 <Play size={16} className="text-gold-500" />
                 {t.hero.cta2}
