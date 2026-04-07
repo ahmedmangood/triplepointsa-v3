@@ -16,11 +16,11 @@ const icons = {
 }
 
 const images = {
-  meeting: "/services/meetingroom/01.webp",
-  queue: "/services/queuesystem/01.webp",
-  security: "/services/securitysystem/01.webp",
-  smart: "/services/smarthome/01.webp",
-  videowall: "/services/videowall/bg01.jpg",
+  meeting: "/services/services-hero/opt/meeting.webp",
+  queue: "/services/services-hero/opt/queue.webp",
+  security: "/services/services-hero/opt/security.webp",
+  smart: "/services/services-hero/opt/smart.webp",
+  videowall: "/services/services-hero/opt/videowall.webp",
 }
 
 const serviceLinks = {
@@ -97,9 +97,7 @@ export default function ServicesSection() {
 
                     {/* Image */}
                     <div className="relative mb-5 w-full border border-gold-500/30 rounded-xl">
-                      {/* <div className="w-12 h-12 rounded-xl bg-gold-500/15 border border-gold-500/30 flex items-center justify-center group-hover:bg-gold-500/25 transition-colors"> */}
-                        <Image className='w-full glass filter rounded' src={service.image} alt={service.title} width={100} height={100} />
-                      {/* </div> */}
+                        <Image className='w-full p-2 rounded-lg glass filter' src={service.image} alt={service.title} width={1000} height={1000} />
                     </div>
 
                     {/* Content */}

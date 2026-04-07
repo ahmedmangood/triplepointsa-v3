@@ -42,13 +42,13 @@ export default function Header() {
         <div className="flex items-center justify-between h-18 py-3">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-12 w-12 overflow-hidden rounded-lg border border-gold-500/20 bg-black/20 shadow-lg shadow-black/20">
+            <div className="relative h-14 w-14 overflow-hidden rounded-lg border border-gold-500/20 bg-white shadow-lg shadow-black/20">
               <Image
                 src="/logo.png"
                 alt={`${brandName} logo`}
-                fill
-                sizes="48px"
-                className="object-contain p-1"
+                width={80}
+                height={80}
+                className="p-0.5 w-80 flex justify-center items-center"
                 priority
               />
             </div>

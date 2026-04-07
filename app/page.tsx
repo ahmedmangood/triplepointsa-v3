@@ -11,7 +11,7 @@ import FinalCtaSection from '@/components/sections/FinalCtaSection'
 export const metadata: Metadata = {
   title: 'Triple Point | حلول تقنية متكاملة في المملكة العربية السعودية',
   description: 'شركة Triple Point متخصصة في حلول تقنية متكاملة — أنظمة قاعات الاجتماعات، إدارة الطوابير، الأمن والمراقبة، والمنازل الذكية للمؤسسات السعودية.',
-  alternates: { canonical: 'https://triplepoint.sa' },
+  alternates: { canonical: 'https://triplepointsa.com' },
 }
 
 export default function HomePage() {
