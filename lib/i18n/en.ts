@@ -53,6 +53,10 @@ export const en = {
         title: 'Smart Homes & Buildings',
         desc: 'Control your lighting, HVAC, and security from one place — a comfortable experience with real energy savings.',
       },
+      videowall: {
+        title: "Video Wall Solutions",
+        desc: "Professional video wall systems for control rooms, lobbies, and experience centers with centralized content management."
+      }
     }
   },
   why: {

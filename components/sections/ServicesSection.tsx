@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Monitor, Users, Shield, Home, Tv, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useI18n } from '@/lib/i18n/context'
+import Image from 'next/image'
 
 const icons = {
   meeting: Monitor,
@@ -14,12 +15,20 @@ const icons = {
   videoWall: Tv,
 }
 
+const images = {
+  meeting: "/services/meetingroom/01.webp",
+  queue: "/services/queuesystem/01.webp",
+  security: "/services/securitysystem/01.webp",
+  smart: "/services/smarthome/01.webp",
+  videowall: "/services/videowall/bg01.jpg",
+}
+
 const serviceLinks = {
   meeting: '/services/meeting-rooms',
   queue: '/services/queue-management',
   security: '/services/security-surveillance',
   smart: '/services/smart-home',
-  videoWall: '/services/video-wall',
+  videowall: '/services/video-wall',
 }
 
 const gradients = [
@@ -34,16 +43,7 @@ export default function ServicesSection() {
   const { t, isRTL } = useI18n()
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
-  const videoWallService = {
-    key: 'videoWall',
-    title: isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions',
-    desc: isRTL
-      ? 'حلول Video Wall احترافية لعرض المحتوى والبيانات في غرف التحكم والاستقبال والمعارض بجودة عالية وإدارة مركزية.'
-      : 'Professional video wall systems for control rooms, lobbies, and experience centers with centralized content management.',
-    Icon: Tv,
-    href: '/services/video-wall',
-    gradient: gradients[4],
-  }
+
 
   const services = [
     ...Object.entries(t.services.items).map(([key, val]) => ({
@@ -52,8 +52,8 @@ export default function ServicesSection() {
       Icon: icons[key as keyof typeof icons],
       href: serviceLinks[key as keyof typeof serviceLinks],
       gradient: gradients[Object.keys(t.services.items).indexOf(key)],
-    })),
-    videoWallService,
+      image: images[key as keyof typeof images],
+    }))
   ]
 
   return (
@@ -77,7 +77,9 @@ export default function ServicesSection() {
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {services.map((service, i) => {
+
             const Icon = service.Icon
+            
             return (
               <motion.div
                 key={service.key}
@@ -85,7 +87,7 @@ export default function ServicesSection() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
-                <Link href={service.href} className="group block h-full">
+                <Link href={`${service.href}`} className="group block h-full">
                   <div className={`relative h-full bg-gradient-to-br ${service.gradient} rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl`}>
                     {/* Background shimmer on hover */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shimmer" />
@@ -93,11 +95,11 @@ export default function ServicesSection() {
                     {/* Gold corner accent */}
                     <div className="absolute top-0 end-0 w-20 h-20 bg-gold-500/10 rounded-bl-3xl group-hover:bg-gold-500/20 transition-colors" />
 
-                    {/* Icon */}
-                    <div className="relative mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-gold-500/15 border border-gold-500/30 flex items-center justify-center group-hover:bg-gold-500/25 transition-colors">
-                        <Icon size={22} className="text-gold-500" />
-                      </div>
+                    {/* Image */}
+                    <div className="relative mb-5 w-full border border-gold-500/30 rounded-xl">
+                      {/* <div className="w-12 h-12 rounded-xl bg-gold-500/15 border border-gold-500/30 flex items-center justify-center group-hover:bg-gold-500/25 transition-colors"> */}
+                        <Image className='w-full glass filter rounded' src={service.image} alt={service.title} width={100} height={100} />
+                      {/* </div> */}
                     </div>
 
                     {/* Content */}
