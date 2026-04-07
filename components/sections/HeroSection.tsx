@@ -94,8 +94,8 @@ export default function HeroSection() {
 
               {/* Center card */}
               <div className="absolute inset-16 glass rounded-3xl border border-gold-500/20 flex flex-col items-center justify-center p-6 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-600 to-teal-900 border border-gold-500/30 flex items-center justify-center mb-4">
-                <Image src="/logo.png" width={80} height={80} alt='logo'/>
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br dark:from-teal-600 dark:to-teal-900 border from-slate-50 to-slate-300 border-gold-500/30 flex items-center justify-center mb-4">
+                  <Image src="/logo.png" width={80} height={80} alt='logo' className='p-1'/>
                 </div>
                 <p className="text-white font-bold text-sm">{t.meta.co_title}</p>
                 <p className="text-gold-500/70 text-xs mt-1">{t.meta.co_headline}</p>

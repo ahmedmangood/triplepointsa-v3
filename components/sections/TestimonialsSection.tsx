@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Quote, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Quote, ChevronLeft, ChevronRight, User2Icon } from 'lucide-react'
 import { useI18n } from '@/lib/i18n/context'
 
 export default function TestimonialsSection() {
@@ -53,7 +53,7 @@ export default function TestimonialsSection() {
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-600 to-teal-800 border-2 border-gold-500/30 flex items-center justify-center flex-shrink-0">
                     <span className="text-gold-500 font-bold text-sm">
-                      {items[active].name.split(' ').map(w => w[0]).slice(0, 2).join('')}
+                      <User2Icon />
                     </span>
                   </div>
                   <div>
