@@ -39,6 +39,11 @@ const gradients = [
   "from-charcoal-700/80 to-teal-800/80",
   "from-teal-600/80 to-charcoal-900/80",
   "from-charcoal-800/80 to-teal-700/80",
+  "from-teal-700/80 to-teal-900/80",
+  "from-teal-800/80 to-charcoal-800/80",
+  "from-charcoal-700/80 to-teal-800/80",
+  "from-teal-600/80 to-charcoal-900/80",
+  "from-charcoal-800/80 to-teal-700/80",
 ];
 
 export default function ServicesSection() {
