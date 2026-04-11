@@ -1,11 +1,19 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { Monitor, Users, Shield, Home, Tv, ArrowLeft, ArrowRight } from 'lucide-react'
-import { useI18n } from '@/lib/i18n/context'
-import Image from 'next/image'
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  Monitor,
+  Users,
+  Shield,
+  Home,
+  Tv,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import Image from "next/image";
 
 const icons = {
   meeting: Monitor,
@@ -13,7 +21,7 @@ const icons = {
   security: Shield,
   smart: Home,
   videoWall: Tv,
-}
+};
 
 const images = {
   meeting: "/services/services-hero/opt/meeting.webp",
@@ -21,29 +29,38 @@ const images = {
   security: "/services/services-hero/opt/security.webp",
   smart: "/services/services-hero/opt/smart.webp",
   videowall: "/services/services-hero/opt/videowall.webp",
-}
+  electric: "/services/services-hero/opt/electric.webp",
+  network: "/services/services-hero/opt/network.webp",
+  sound: "/services/services-hero/opt/sound.webp",
+  odoo: "/services/services-hero/opt/odoo.webp",
+  software: "/services/services-hero/opt/software.webp",
+};
 
 const serviceLinks = {
-  meeting: '/services/meeting-rooms',
-  queue: '/services/queue-management',
-  security: '/services/security-surveillance',
-  smart: '/services/smart-home',
-  videowall: '/services/video-wall',
-}
+  meeting: "/services/meeting-rooms",
+  queue: "/services/queue-management",
+  security: "/services/security-surveillance",
+  smart: "/services/smart-home",
+  videowall: "/services/video-wall",
+  electric: "/services/electrical",
+  network: "/services/network",
+  sound: "/services/sound",
+  odoo: "/services/odoo",
+  software: "/services/software",
+};
 
 const gradients = [
-  'from-teal-700/80 to-teal-900/80',
-  'from-teal-800/80 to-charcoal-800/80',
-  'from-charcoal-700/80 to-teal-800/80',
-  'from-teal-600/80 to-charcoal-900/80',
-  'from-charcoal-800/80 to-teal-700/80',
-]
+  "from-teal-700/80 to-teal-900/80",
+  "from-teal-800/80 to-charcoal-800/80",
+  "from-charcoal-700/80 to-teal-800/80",
+  "from-teal-600/80 to-charcoal-900/80",
+  "from-charcoal-800/80 to-teal-700/80",
+];
 
 export default function ServicesSection() {
-  const { t, isRTL } = useI18n()
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
-
+  const { t, isRTL } = useI18n();
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   const services = [
     ...Object.entries(t.services.items).map(([key, val]) => ({
@@ -53,8 +70,8 @@ export default function ServicesSection() {
       href: serviceLinks[key as keyof typeof serviceLinks],
       gradient: gradients[Object.keys(t.services.items).indexOf(key)],
       image: images[key as keyof typeof images],
-    }))
-  ]
+    })),
+  ];
 
   return (
     <section ref={ref} className="py-24 bg-white dark:bg-charcoal-900">
@@ -77,9 +94,8 @@ export default function ServicesSection() {
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {services.map((service, i) => {
+            const Icon = service.Icon;
 
-            const Icon = service.Icon
-            
             return (
               <motion.div
                 key={service.key}
@@ -88,7 +104,9 @@ export default function ServicesSection() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <Link href={`${service.href}`} className="group block h-full">
-                  <div className={`relative h-full bg-gradient-to-br ${service.gradient} rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl`}>
+                  <div
+                    className={`relative h-full bg-gradient-to-br ${service.gradient} rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl`}
+                  >
                     {/* Background shimmer on hover */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shimmer" />
 
@@ -97,12 +115,25 @@ export default function ServicesSection() {
 
                     {/* Image */}
                     <div className="relative mb-5 w-full border border-gold-500/30 rounded-xl">
-                        <Image className='w-full p-2 rounded-lg glass filter' src={service.image} alt={service.title} width={1000} height={1000} />
+                      <Image
+                        className="w-full p-2 rounded-lg glass filter"
+                        src={
+                          service.image ||
+                          "/services/infrastructure/dataCables.jpeg.webp"
+                        }
+                        alt={service.title}
+                        width={1000}
+                        height={1000}
+                      />
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-white font-bold text-lg mb-3 leading-snug">{service.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed mb-5">{service.desc}</p>
+                    <h3 className="text-white font-bold text-lg mb-3 leading-snug">
+                      {service.title}
+                    </h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-5">
+                      {service.desc}
+                    </p>
 
                     {/* Link */}
                     <div className="flex items-center gap-2 text-gold-500 text-sm font-semibold group-hover:gap-3 transition-all">
@@ -112,10 +143,10 @@ export default function ServicesSection() {
                   </div>
                 </Link>
               </motion.div>
-            )
+            );
           })}
         </div>
       </div>
     </section>
-  )
+  );
 }
