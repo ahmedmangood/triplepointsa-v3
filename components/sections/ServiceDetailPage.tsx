@@ -1,71 +1,121 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { CheckCircle2, ArrowLeft, ArrowRight, MessageCircle, LucideIcon } from 'lucide-react'
-import { useI18n } from '@/lib/i18n/context'
-import FinalCtaSection from '@/components/sections/FinalCtaSection'
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  CheckCircle2,
+  ArrowLeft,
+  ArrowRight,
+  MessageCircle,
+  LucideIcon,
+} from "lucide-react";
+import { useI18n } from "@/lib/i18n/context";
+import FinalCtaSection from "@/components/sections/FinalCtaSection";
 
 interface ServiceDetailData {
-  title: string
-  subtitle: string
-  desc: string
-  benefits: string[]
-  useCases: string[]
-  industries: string[]
+  title: string;
+  subtitle: string;
+  desc: string;
+  benefits: string[];
+  useCases: string[];
+  industries: string[];
 }
 
 interface ServiceDetailPageProps {
-  Icon: LucideIcon
-  gradient: string
-  dataKey: 'meetingRooms' | 'queue' | 'security' | 'smartHome' | 'videoWall'
+  Icon: LucideIcon;
+  gradient: string;
+  dataKey:
+    | "meetingRooms"
+    | "queue"
+    | "security"
+    | "smartHome"
+    | "videoWall"
+    | "electrical"
+    | "network"
+    | "sound"
+    | "odoo"
+    | "software";
 }
 
-export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDetailPageProps) {
-  const { t, isRTL } = useI18n()
+export default function ServiceDetailPage({
+  Icon,
+  gradient,
+  dataKey,
+}: ServiceDetailPageProps) {
+  const { t, isRTL } = useI18n();
   const videoWallData: ServiceDetailData = {
-    title: isRTL ? 'الشاشات الجدارية' : 'Video Wall Solutions',
-    subtitle: isRTL ? 'منصات عرض احترافية للمراقبة والعروض التفاعلية' : 'Professional visual platforms for monitoring and immersive display',
+    title: isRTL ? "الشاشات الجدارية" : "Video Wall Solutions",
+    subtitle: isRTL
+      ? "منصات عرض احترافية للمراقبة والعروض التفاعلية"
+      : "Professional visual platforms for monitoring and immersive display",
     desc: isRTL
-      ? 'نصمم وننفذ أنظمة Video Wall متكاملة لعرض البيانات والمحتوى المرئي في غرف التحكم، الردهات، مراكز العمليات، والمعارض. نوفر لك شاشات عالية الاعتمادية مع معالجات عرض احترافية وإدارة محتوى مركزية تناسب بيئات العمل الحرجة.'
-      : 'We design and implement integrated video wall systems for control rooms, lobbies, operations centers, and exhibitions. Our solutions combine high-reliability display panels, professional wall processors, and centralized content control for mission-critical environments.',
+      ? "نصمم وننفذ أنظمة Video Wall متكاملة لعرض البيانات والمحتوى المرئي في غرف التحكم، الردهات، مراكز العمليات، والمعارض. نوفر لك شاشات عالية الاعتمادية مع معالجات عرض احترافية وإدارة محتوى مركزية تناسب بيئات العمل الحرجة."
+      : "We design and implement integrated video wall systems for control rooms, lobbies, operations centers, and exhibitions. Our solutions combine high-reliability display panels, professional wall processors, and centralized content control for mission-critical environments.",
     benefits: isRTL
       ? [
-          'شاشات متزامنة بإطارات نحيفة ودقة عرض عالية',
-          'معالجات Video Wall احترافية لتقسيم وإدارة المحتوى',
-          'تشغيل مستمر 24/7 لغرف المراقبة ومراكز العمليات',
-          'إدارة مركزية للمصادر والسيناريوهات من واجهة واحدة',
+          "شاشات متزامنة بإطارات نحيفة ودقة عرض عالية",
+          "معالجات Video Wall احترافية لتقسيم وإدارة المحتوى",
+          "تشغيل مستمر 24/7 لغرف المراقبة ومراكز العمليات",
+          "إدارة مركزية للمصادر والسيناريوهات من واجهة واحدة",
         ]
       : [
-          'Synchronized high-resolution panels with ultra-narrow bezels',
-          'Professional video wall processors for layout and source control',
-          '24/7 operation for monitoring centers and operations rooms',
-          'Centralized management for sources, presets, and display scenarios',
+          "Synchronized high-resolution panels with ultra-narrow bezels",
+          "Professional video wall processors for layout and source control",
+          "24/7 operation for monitoring centers and operations rooms",
+          "Centralized management for sources, presets, and display scenarios",
         ],
     useCases: isRTL
-      ? ['غرف التحكم والمراقبة', 'ردهات الشركات والجهات الحكومية', 'المعارض ومراكز الزوار', 'مراكز العمليات والطوارئ']
-      : ['Control and surveillance rooms', 'Corporate and government lobbies', 'Exhibitions and visitor centers', 'Operations and emergency centers'],
-    industries: isRTL ? ['حكومة', 'أمن', 'شركات', 'معارض'] : ['Government', 'Security', 'Corporate', 'Exhibitions'],
-  }
-  const data = dataKey === 'videoWall' ? videoWallData : t.servicesPage[dataKey] as ServiceDetailData
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
+      ? [
+          "غرف التحكم والمراقبة",
+          "ردهات الشركات والجهات الحكومية",
+          "المعارض ومراكز الزوار",
+          "مراكز العمليات والطوارئ",
+        ]
+      : [
+          "Control and surveillance rooms",
+          "Corporate and government lobbies",
+          "Exhibitions and visitor centers",
+          "Operations and emergency centers",
+        ],
+    industries: isRTL
+      ? ["حكومة", "أمن", "شركات", "معارض"]
+      : ["Government", "Security", "Corporate", "Exhibitions"],
+  };
+  const data =
+    dataKey === "videoWall"
+      ? videoWallData
+      : (t.servicesPage[dataKey] as ServiceDetailData);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   return (
     <>
       {/* Hero */}
-      <section className={`bg-gradient-to-br ${gradient} pt-36 pb-20 relative overflow-hidden`}>
+      <section
+        className={`bg-gradient-to-br ${gradient} pt-36 pb-20 relative overflow-hidden`}
+      >
         <div className="absolute inset-0 grid-pattern opacity-15" />
         <div className="absolute top-0 end-0 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-white/40 text-sm mb-8">
-              <Link href="/" className="hover:text-white/70 transition-colors">{t.nav.home}</Link>
+              <Link href="/" className="hover:text-white/70 transition-colors">
+                {t.nav.home}
+              </Link>
               <span>/</span>
-              <Link href="/services" className="hover:text-white/70 transition-colors">{t.nav.services}</Link>
+              <Link
+                href="/services"
+                className="hover:text-white/70 transition-colors"
+              >
+                {t.nav.services}
+              </Link>
               <span>/</span>
               <span className="text-white/70">{data.title}</span>
             </div>
@@ -109,7 +159,10 @@ export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDe
                         transition={{ delay: 0.3 + i * 0.1 }}
                         className="flex items-center gap-3 bg-white/5 rounded-xl px-4 py-3"
                       >
-                        <CheckCircle2 size={16} className="text-gold-500 flex-shrink-0" />
+                        <CheckCircle2
+                          size={16}
+                          className="text-gold-500 flex-shrink-0"
+                        />
                         <span className="text-white/80 text-sm">{b}</span>
                       </motion.div>
                     ))}
@@ -133,7 +186,7 @@ export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDe
               className="lg:col-span-2"
             >
               <h2 className="display-md text-charcoal-800 dark:text-white mb-8 gold-line-before">
-                {isRTL ? 'المزايا الرئيسية' : 'Key Benefits'}
+                {isRTL ? "المزايا الرئيسية" : "Key Benefits"}
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {data.benefits.map((benefit, i) => (
@@ -147,7 +200,9 @@ export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDe
                     <div className="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <CheckCircle2 size={15} className="text-gold-600" />
                     </div>
-                    <p className="text-charcoal-700 dark:text-white/70 text-sm leading-relaxed">{benefit}</p>
+                    <p className="text-charcoal-700 dark:text-white/70 text-sm leading-relaxed">
+                      {benefit}
+                    </p>
                   </motion.div>
                 ))}
               </div>
@@ -163,11 +218,14 @@ export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDe
               {/* Use cases */}
               <div className="bg-teal-950 rounded-2xl p-6 border border-gold-500/15">
                 <h3 className="text-white font-bold mb-4 text-sm uppercase tracking-wider gold-line-before">
-                  {isRTL ? 'حالات الاستخدام' : 'Use Cases'}
+                  {isRTL ? "حالات الاستخدام" : "Use Cases"}
                 </h3>
                 <ul className="space-y-3">
                   {data.useCases.map((uc) => (
-                    <li key={uc} className="flex items-center gap-2 text-white/60 text-sm">
+                    <li
+                      key={uc}
+                      className="flex items-center gap-2 text-white/60 text-sm"
+                    >
                       <div className="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0" />
                       {uc}
                     </li>
@@ -178,11 +236,14 @@ export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDe
               {/* Industries */}
               <div className="bg-white dark:bg-charcoal-800 rounded-2xl p-6 border border-gray-100 dark:border-white/8">
                 <h3 className="text-charcoal-800 dark:text-white font-bold mb-4 text-sm uppercase tracking-wider gold-line-before">
-                  {isRTL ? 'القطاعات المستفيدة' : 'Industries Served'}
+                  {isRTL ? "القطاعات المستفيدة" : "Industries Served"}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {data.industries.map((ind) => (
-                    <span key={ind} className="px-3 py-1.5 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 text-xs font-medium rounded-full border border-teal-200 dark:border-teal-700/40">
+                    <span
+                      key={ind}
+                      className="px-3 py-1.5 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 text-xs font-medium rounded-full border border-teal-200 dark:border-teal-700/40"
+                    >
                       {ind}
                     </span>
                   ))}
@@ -192,10 +253,12 @@ export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDe
               {/* Quick CTA */}
               <div className="bg-gradient-to-br from-teal-700 to-teal-900 rounded-2xl p-6 border border-gold-500/15">
                 <h3 className="text-white font-bold mb-3 text-sm">
-                  {isRTL ? 'جاهز للبدء؟' : 'Ready to Start?'}
+                  {isRTL ? "جاهز للبدء؟" : "Ready to Start?"}
                 </h3>
                 <p className="text-white/50 text-xs leading-relaxed mb-4">
-                  {isRTL ? 'تواصل معنا للحصول على عرض سعر مخصص لاحتياجاتك.' : 'Contact us for a custom quote tailored to your needs.'}
+                  {isRTL
+                    ? "تواصل معنا للحصول على عرض سعر مخصص لاحتياجاتك."
+                    : "Contact us for a custom quote tailored to your needs."}
                 </p>
                 <Link
                   href="/contact"
@@ -211,5 +274,5 @@ export default function ServiceDetailPage({ Icon, gradient, dataKey }: ServiceDe
 
       <FinalCtaSection />
     </>
-  )
+  );
 }

@@ -3,25 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {
-  Monitor,
-  Users,
-  Shield,
-  Home,
-  Tv,
-  ArrowLeft,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import Image from "next/image";
-
-const icons = {
-  meeting: Monitor,
-  queue: Users,
-  security: Shield,
-  smart: Home,
-  videoWall: Tv,
-};
 
 const images = {
   meeting: "/services/services-hero/opt/meeting.webp",
@@ -66,7 +50,6 @@ export default function ServicesSection() {
     ...Object.entries(t.services.items).map(([key, val]) => ({
       key,
       ...val,
-      Icon: icons[key as keyof typeof icons],
       href: serviceLinks[key as keyof typeof serviceLinks],
       gradient: gradients[Object.keys(t.services.items).indexOf(key)],
       image: images[key as keyof typeof images],
@@ -94,8 +77,6 @@ export default function ServicesSection() {
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {services.map((service, i) => {
-            const Icon = service.Icon;
-
             return (
               <motion.div
                 key={service.key}
