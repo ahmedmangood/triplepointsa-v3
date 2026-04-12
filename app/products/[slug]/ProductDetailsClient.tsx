@@ -1,60 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  MessageCircle,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Product } from "@/lib/products";
 import FinalCtaSection from "@/components/sections/FinalCtaSection";
+import ProductGallery from "./components/ProductGallery";
+import ProductSlidesCarousel from "./components/ProductSlidesCarousel";
+import { resolveProductGallery, resolveProductSlides } from "./productMedia";
 
 type ProductDetailsClientProps = {
   product: Product;
 };
-
-function getFallbackGallery(image: string) {
-  if (image.startsWith("/services/meetingroom/")) {
-    return [image, "/services/meetingroom/08.webp", "/services/meetingroom/011.webp"];
-  }
-  if (image.startsWith("/services/queuesystem/")) {
-    return [image, "/services/queuesystem/02.webp", "/services/queuesystem/03.webp"];
-  }
-  if (image.startsWith("/services/securitysystem/")) {
-    return [image, "/services/securitysystem/02.webp", "/services/securitysystem/04.webp"];
-  }
-  if (image.startsWith("/services/infrastructure/")) {
-    return [
-      image,
-      "/services/infrastructure/network3-1.webp",
-      "/services/infrastructure/network5-1.webp",
-    ];
-  }
-  if (image.startsWith("/services/smarthome/")) {
-    return [image, "/services/smarthome/02.webp", "/services/smarthome/03.webp"];
-  }
-  if (image.startsWith("/products/meeting/")) {
-    return [
-      image,
-      "/products/meeting/SeeUp4H.webp",
-      "/products/meeting/SeeUp4c.webp",
-      "/products/meeting/TB5KIT.webp",
-      "/products/meeting/TB5WKIT.webp",
-      "/products/meeting/triplepod.webp",
-      "/products/meeting/triple6x.webp",
-      "/products/meeting/triple20x.webp",
-    ];
-  }
-  return [image];
-}
 
 export default function ProductDetailsClient({
   product,
@@ -69,15 +28,8 @@ export default function ProductDetailsClient({
   const features = isRTL ? product.featuresAr : product.featuresEn;
   const useCases = isRTL ? product.useCasesAr : product.useCasesEn;
 
-  const optionalGallery = (product as Product & { gallery?: string[] }).gallery;
-  const rawGallery =
-    optionalGallery && optionalGallery.length > 0
-      ? optionalGallery
-      : [product.image];
-  const gallery = rawGallery.length > 1 ? rawGallery : getFallbackGallery(product.image);
-
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const activeImage = gallery[activeImageIndex];
+  const gallery = resolveProductGallery(product);
+  const slides = resolveProductSlides(product);
 
   const whatsappMessage = encodeURIComponent(
     isRTL
@@ -85,13 +37,6 @@ export default function ProductDetailsClient({
       : `Hello, I want to inquire about this product: ${product.titleEn}`
   );
   const whatsappUrl = `https://wa.me/966547341541?text=${whatsappMessage}`;
-
-  const goPrevImage = () => {
-    setActiveImageIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1));
-  };
-  const goNextImage = () => {
-    setActiveImageIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1));
-  };
 
   return (
     <>
@@ -151,55 +96,7 @@ export default function ProductDetailsClient({
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="relative h-72 lg:h-[26rem] rounded-3xl overflow-hidden border border-white/20">
-                  <Image src={activeImage} alt={title} fill className="object-cover" />
-                  {gallery.length > 1 && (
-                    <>
-                      <button
-                        onClick={goPrevImage}
-                        className="absolute top-1/2 start-3 -translate-y-1/2 w-10 h-10 rounded-full bg-black/35 hover:bg-black/55 text-white border border-white/20 flex items-center justify-center transition-colors"
-                        aria-label={isRTL ? "الصورة السابقة" : "Previous image"}
-                      >
-                        <ChevronLeft size={18} />
-                      </button>
-                      <button
-                        onClick={goNextImage}
-                        className="absolute top-1/2 end-3 -translate-y-1/2 w-10 h-10 rounded-full bg-black/35 hover:bg-black/55 text-white border border-white/20 flex items-center justify-center transition-colors"
-                        aria-label={isRTL ? "الصورة التالية" : "Next image"}
-                      >
-                        <ChevronRight size={18} />
-                      </button>
-                    </>
-                  )}
-                </div>
-
-                {gallery.length > 1 && (
-                  <div className="grid grid-cols-4 gap-2">
-                    {gallery.map((image, index) => (
-                      <button
-                        key={`${image}-${index}`}
-                        onClick={() => setActiveImageIndex(index)}
-                        className={`relative h-16 rounded-lg overflow-hidden border transition-colors ${
-                          index === activeImageIndex
-                            ? "border-gold-400"
-                            : "border-white/25 hover:border-white/50"
-                        }`}
-                        aria-label={
-                          isRTL ? `عرض الصورة ${index + 1}` : `Show image ${index + 1}`
-                        }
-                      >
-                        <Image
-                          src={image}
-                          alt={`${title} ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <ProductGallery images={gallery} title={title} isRTL={isRTL} />
             </div>
           </motion.div>
         </div>
@@ -281,6 +178,7 @@ export default function ProductDetailsClient({
         </div>
       </section>
 
+      <ProductSlidesCarousel slides={slides} title={title} isRTL={isRTL} />
       <FinalCtaSection />
     </>
   );
