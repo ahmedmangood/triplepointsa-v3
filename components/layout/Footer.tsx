@@ -91,6 +91,7 @@ export default function Footer() {
                 { href: "/", label: t.nav.home },
                 { href: "/about", label: t.nav.about },
                 { href: "/projects", label: t.nav.projects },
+                { href: "/products", label: isRTL ? "المنتجات" : "Products" },
                 { href: "/contact", label: t.nav.contact },
               ].map((item) => (
                 <li key={item.href}>

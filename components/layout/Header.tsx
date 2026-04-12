@@ -12,6 +12,7 @@ export default function Header() {
   const { t, lang, setLang, isRTL } = useI18n();
   const { theme, toggleTheme } = useTheme();
   const brandName = t.meta.co_title;
+  const productsLabel = isRTL ? "المنتجات" : "Products";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -156,6 +157,12 @@ export default function Header() {
               {t.nav.projects}
             </Link>
             <Link
+              href="/products"
+              className="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-gold-500 transition-colors rounded-lg hover:bg-white/5"
+            >
+              {productsLabel}
+            </Link>
+            <Link
               href="/contact"
               className="nav-link px-4 py-2 text-sm font-medium text-white/80 hover:text-gold-500 transition-colors rounded-lg hover:bg-white/5"
             >
@@ -218,6 +225,7 @@ export default function Header() {
                 { href: "/services", label: t.nav.services },
                 ...services,
                 { href: "/projects", label: t.nav.projects },
+                { href: "/products", label: productsLabel },
                 { href: "/contact", label: t.nav.contact },
               ].map((item) => (
                 <Link
